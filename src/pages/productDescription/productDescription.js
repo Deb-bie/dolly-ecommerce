@@ -3,6 +3,8 @@ import './productDescription.css';
 import Navbar from '../../components/navbar/navbar'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase/config';
+import { collection, addDoc, doc , updateDoc} from "firebase/firestore"; 
+
 
 
 
@@ -14,9 +16,39 @@ const ProductDescription = () => {
 
     const navigate = useNavigate();
 
-    const handleAddToCart =() => {
+    const title = location.state.title;
+    const description = location.state.description;
+    const wholesalePrice = location.state.wholesalePrice;
+    const retailPrice = location.state.retailPrice;
+    const stock = location.state.stock;
+    const img = location.state.img;
+    const qty = location.state.qty;
+    const totalPrice = location.state.totalPrice;
+
+
+    const handleAddToCart = async() => {
         if (auth.currentUser !== null){
-          navigate('/cart')
+
+            const ref = await addDoc(collection(db, 'users', `${auth.currentUser.uid}`, 'cart'),{
+                title,
+                description,
+                wholesalePrice,
+                retailPrice,
+                stock,
+                img,
+                qty,
+                totalPrice,
+            })
+
+            await updateDoc(doc(db, 'users', `${auth.currentUser.uid}`, 'cart', `${ref.id}`), {
+                id: ref.id
+            })
+
+          navigate('/cart');
+
+          return ref;
+
+         
         }
         else{
           navigate('/signup')
@@ -32,7 +64,7 @@ const ProductDescription = () => {
 
                 < div className='description-container'>
                     <div className='product-image'>
-                        <img alt="image" src={location.state.img}/>
+                        <img alt="product" src={location.state.img}/>
                     </div>
 
                     <div className='product-details'>

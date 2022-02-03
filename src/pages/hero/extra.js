@@ -7,93 +7,83 @@ import Bag from '../../assets/slide/pink_bag.jpg';
 
 
 
+
+
+
+// useEffect(() => {
+    //     const unsub = async () => {
+    //         const onSnapshot = await getDocs(collectionGroup(db, 'cart'), where("id", '==', `${auth.currentUser.uid}`));
+    //         setCart(onSnapshot.docs.map((doc) => doc.data()))
+
+    //         console.log('why')
+    //     };
+
+    //     return unsub();
+    // }, []); 
+
+
+
+
+    // useEffect(() => {
+    //     const snap = onSnapshot(collection(db, "users/random/cart"),
+    //     (snapshot) => {
+    //         setCart(snapshot.docs.map((doc) => doc.data()))
+    //     });
+    //     return snap();
+    // }, []);
+
+
+
+    
+
+    // useEffect(() => {
+    //     const snap = async () => {
+    //         const onSnapshot = await collection(db, "users/random/cart")
+    //         setCart(onSnapshot.docs.map((doc) => doc.data()))
+    //     };
+    //     return snap();
+    // }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const Extra = () => {
 
-  return (
+    return (
 
-
-    // <Carousel fade={true} pause={false}>
-    //   <Carousel.Item interval={2000}>
-    //     <img
-    //       className="d-block w-100"
-    //       src={Bag}
-    //       alt="First slide"
-    //     />
-    //     <Carousel.Caption>
-    //       <h3>First slide label</h3>
-    //       <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-    //     </Carousel.Caption>
-    //   </Carousel.Item>
-    //   <Carousel.Item interval={2000}>
-    //     <img
-    //       className="d-block w-100"
-    //       src={Bag}
-    //       alt="Third slide"
-    //     />
-    //     <Carousel.Caption>
-    //       <h3>Second slide label</h3>
-    //       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    //     </Carousel.Caption>
-    //   </Carousel.Item>
-    //   <Carousel.Item interval={2000}>
-    //     <img
-    //       className="d-block w-100"
-    //       src={Bag}
-    //       alt="Third slide"
-    //     />
-    //     <Carousel.Caption>
-    //       <h3>Third slide label</h3>
-    //       <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-    //     </Carousel.Caption>
-    //   </Carousel.Item>
-    // </Carousel>
-
-
-
-
-
-    <Carousel>
-  <Carousel.Item>
-    <img
-      // className="d-block w-100"
-      src={Bag}
-      alt="First slide"
-    />
-    <Carousel.Caption>
-      <h3>First slide label</h3>
-      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src={Bag}
-      alt="Second slide"
-    />
-
-    <Carousel.Caption>
-      <h3>Second slide label</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      // className="d-block w-100"
-      src={Bag}
-      alt="Third slide"
-    />
-
-    <Carousel.Caption>
-      <h3>Third slide label</h3>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-    </Carousel.Caption>
-  </Carousel.Item>
-</Carousel>
-
-
-
-
-  )
+      <div>
+        hello guys
+        <br />
+        fine
+        <br />
+        hello guys
+        <br />
+        fine
+        <br />
+        hello guys
+        <br />
+        fine
+        <br />
+        hello guys
+        <br />
+        fine
+        <br />
+      </div>
+    )
 
 
 }

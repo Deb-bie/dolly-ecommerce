@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Button, Card, Container,} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {useNavigate} from 'react-router';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db} from '../../firebase/config';
-import { collection, addDoc, setDoc, Timestamp, doc } from "firebase/firestore"; 
+import { setDoc, Timestamp, doc } from "firebase/firestore"; 
 import './signup.css';
 import Navbar from '../../components/navbar/navbar.js'
 
@@ -13,6 +12,8 @@ import Navbar from '../../components/navbar/navbar.js'
 const Signup = () => {
   
     const navigate = useNavigate();
+
+    const user = auth.currentUser;
 
     const [data, setData] = useState({
         username: "",
@@ -39,7 +40,7 @@ const Signup = () => {
             setData({ ...data, errorMsg: "Passwords do not match.", loading: true });
         }
 
-        else if (password != /^[A-Za-z]\w{7,14}$/) {
+        else if (password !== /^[A-Za-z]\w{7,14}$/) {
             setData({ ...data, errorMsg: "Passwords should be equal to 6 letters.", loading: true});
         }
 
@@ -55,7 +56,9 @@ const Signup = () => {
                 passwordConfirm, 
                 createdAt: Timestamp.fromDate(new Date()),
                 isOnline: true,
+                displayName: user.displayName,
             });
+
 
             setData({
                 username,

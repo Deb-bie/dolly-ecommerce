@@ -1,0 +1,55 @@
+.productList{
+    flex: 4;
+  }
+  
+  .productListItem{
+    display: flex;
+    align-items: center;
+  }
+  
+  .productListImg {
+    width: 90px;
+    height: 90px;
+    /* border-radius: 50%; */
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .productListEdit{
+    color: green;
+    cursor: pointer;
+  }
+  
+.productListDelete{
+  color: red;
+  cursor: pointer;
+}
+
+
+
+.add-icon{
+  z-index: 10;
+  margin-top: 20%;
+  margin-left: 90%;
+  position: fixed;
+
+  /* right: 20;
+  position: 'fixed'; */
+}
+
+
+/* .fab{
+  right: 20;
+  position: 'fixed';
+} */
+
+
+
+
+
+
+
+
+
+
+

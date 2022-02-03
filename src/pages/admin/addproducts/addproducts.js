@@ -10,6 +10,7 @@ import "./addproducts.css"
 
 
 
+
 const AddProducts = () => {
 
     const navigate = useNavigate();
@@ -17,13 +18,15 @@ const AddProducts = () => {
     const [data, setData] = useState({
         title: "",
         description: "",
-        wholesalePrice: '',
-        retailPrice: '',
-        stock: '',
+        wholesalePrice: Number(),
+        retailPrice: Number(),
+        stock: Number(),
         uploadErrorMsg: "",
         success: "",
         loading: false,
-        user: ""
+        user: "",
+        totalPrice: Number(),
+        qty: 1,
     });
 
     const [image, setImage] = useState('')
@@ -59,19 +62,23 @@ const AddProducts = () => {
                 retailPrice,
                 stock,
                 image: url,
-                path: snap.ref.fullPath
+                path: snap.ref.fullPath,
+                totalPrice: retailPrice,
+                qty: 1,
             });
 
             setData({
                 ...data, 
                 title: "", 
                 description: "",
-                wholesalePrice: "",
-                retailPrice: "",
-                stock: "",
+                wholesalePrice: Number(),
+                retailPrice: Number(),
+                stock:  Number(),
                 success: "Product Added",
                 uploadErrorMsg: "",
                 loading: false,
+                totalPrice: Number(),
+                qty: 1,
     
             });
     

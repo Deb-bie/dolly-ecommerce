@@ -50,6 +50,8 @@ const EditProduct = () => {
                 retailPrice,
                 wholesalePrice,
                 image: location.state.img,
+                totalPrice: retailPrice,
+                qty: 1,
             });
 
             setData({

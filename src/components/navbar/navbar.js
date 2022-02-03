@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import './navbar.css';
-import {PhoneIphoneOutlined, Facebook, Twitter, 
-        Instagram, WhatsApp, Search, PersonOutlined, 
-        ShoppingCartOutlined, FavoriteOutlined, CloseOutlined, MenuOutlined
-    } from '@material-ui/icons';
+import {PhoneIphoneOutlined, Facebook, Twitter, Instagram, WhatsApp, Search, PersonOutlined, KeyboardArrowDownOutlined, ShoppingCartOutlined, FavoriteOutlined, CloseOutlined, MenuOutlined} from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/logo/logo.svg'
-
+import Logo from '../../assets/logo/logo.svg';     
+import { auth, db } from '../../firebase/config'
+import { signOut } from 'firebase/auth';
 
 
 
@@ -68,43 +66,64 @@ const Navbar = () => {
                 
             </nav>
 
+  
+
+
+            {/* SEARCH NAV */}
 
 
             <div className='search-nav'>
                 <div className='search-container'>
 
                     <div className="navbar-icon" onClick={handleClick}>
-                        {click ? <CloseOutlined style={{fontSize: "30px"}} /> : <MenuOutlined style={{fontSize: "30px"}}/>}
+                        <div className='menu'>
+                            <MenuOutlined style={{fontSize: "30px"}}/> &nbsp;
+                            Menu
+                        </div>
                     </div>
 
                     <ul className={click ? "nav-menu active" : "nav-menu"}>
+                        <CloseOutlined className='close'
+                            style={{
+                                color: "black",
+                                marginLeft: "90%",
+                                marginBottom: '1rem',
+                            }}
+
+                            onClick={handleClick}
+                         />
                         <li className="nav-item">
-                            <Link to='#' activeClass="active" className="nav-link" onClick={handleClick}>
+                            <Link to='#' className="nav-link text">
+                                <input placeholder="Search products" className='media-input' />
+                                <Search
+                                    style={{
+                                    color: "blue",
+                                }}
+                                 />
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link to='#' className="nav-links" onClick={handleClick}>
                                 Home
                             </Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link to='#' activeClass="active" className="nav-link" onClick={handleClick}>
-                                About
-                            </Link>
-                        </li>
-
-                        <li className="nav-item">
-                            <Link to='#' activeClass="active" className="nav-link" onClick={handleClick}>
+                            <Link to='#' className="nav-links" onClick={handleClick}>
                                 Services
                             </Link>
                         </li>
 
                         <li className="nav-item">
-                            <Link to='#' activeClass="active" className="nav-link" onClick={handleClick}>
+                            <Link to='#' className="nav-links" onClick={handleClick}>
                                 Discovery
                             </Link>
                         </li>
                     </ul>
 
                     <div className='logo'>
-                        <Link to='#'>
+                        <Link to='/'>
                             <img src={Logo} alt='logo' />
                         </Link>
                     </div>
@@ -126,29 +145,110 @@ const Navbar = () => {
                     </div>
 
                     <div className="profile-icon ">
-                        <div className="person">
-                            <Link to='#' className='profile'>
-                                <PersonOutlined />
+                        {auth.currentUser ? (
+
+                            <>
+                                <div className="person">
+                                    <Link to='/signin' className='profile'>
+                                        {auth.currentUser.email}
+                                    </Link>
+                                </div>
+
+                                <div className='cart'>
+                                    <Link to='/cart' className='profile'>
+                                        <ShoppingCartOutlined />
+                                    </Link>
+                                </div>
+
+                                <div className='favorite'>
+                                    <Link to='/addproducts' className='profile'>
+                                        <FavoriteOutlined />
+                                    </Link>
+                                </div>
+                            </>
+
+                        ) : (
+                            <>
+                                <div className="person">
+                                    <Link to='/signin' className='profile'>
+                                        <PersonOutlined />
+                                    </Link>
+                                </div>
+
+                                <div className='cart'>
+                                    <Link to='/addproducts' className='profile'>
+                                        <ShoppingCartOutlined />
+                                    </Link>
+                                </div>
+
+                                <div className='favorite'>
+                                    <Link to='#' className='profile'>
+                                        <FavoriteOutlined />
+                                    </Link>
+                                </div>
+                            </>
+                        )}
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            {/* Home NAV */}
+
+            <div className='home-nav'>
+                <div className='home-container'>
+                    <div className='home-items'>
+                        <Link to='/' className='item active'>Home</Link>
+                    </div>
+
+                    <div className='home-items'>
+                        <div className='dropdown'>
+                            <Link to='#' className='dropbtn'>
+                                Clothing
+                                <KeyboardArrowDownOutlined />
                             </Link>
+                            <div className='dropdown-content'>
+                                <Link className='a' to='#'>2 Piece Dresses</Link>
+                                <Link className='a' to='#'>Club Dresses</Link>
+                                <Link className='a' to='#'>2 Piece Dresses</Link>
+                                <Link className='a' to='#'>2 Piece Dresses</Link>
+                            </div>
                         </div>
-
-                        <div className='cart'>
-                            <Link to='#' className='profile'>
-                                <ShoppingCartOutlined />
-                            </Link>
-                        </div>
-
-                        <div className='favorite'>
-                            <Link to='#' className='profile'>
-                            <FavoriteOutlined />
-                        </Link>
-                        </div>
-
-                        
                     </div>
 
 
+                    <div className='home-items'>
+                        <div className='dropdown'>
+                            <Link to='#' className='dropbtn'>
+                                Shoes
+                                <KeyboardArrowDownOutlined />
+                            </Link>
+                            <div className='dropdown-content'>
+                                <Link className='a' to='#'>Heels</Link>
+                                <Link className='a' to='#'>Slides</Link>
+                                <Link className='a' to='#'>Sneakers</Link>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className='home-items'>
+                        <Link to='#' className='item'>Bags</Link>
+                    </div>
+
+                    <div className='home-items'>
+                        <Link to='#' className='item'>Wholesaling</Link>
+                    </div>
+
+                    <div className='home-items'>
+                        <Link to='#' className='item'>About Us</Link>
+                    </div>
+
                 </div>
+
             </div>
         </header>
 

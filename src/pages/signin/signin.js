@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {useNavigate} from 'react-router';
 import { signInWithEmailAndPassword} from 'firebase/auth';
 import { auth, db} from '../../firebase/config';
-import { collection, addDoc, setDoc, Timestamp, doc, updateDoc } from "firebase/firestore"; 
+import { doc, updateDoc } from "firebase/firestore"; 
 import './signin.css';
 import Navbar from '../../components/navbar/navbar.js'
 
@@ -55,7 +55,7 @@ const Signin = () => {
 
 
 
-    const { email, password, passwordConfirm, errorMsg, loading } = data;
+    const { email, password, errorMsg, loading } = data;
 
 
     return (

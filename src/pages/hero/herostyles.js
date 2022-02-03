@@ -2,10 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
-    // height: (100% - 180px);
-    height: 10%;
-    // margin-top: -240px;  
-    margin-bottom: -180px;
     display: flex;
     position: relative;
     overflow: hidden;
@@ -28,14 +24,12 @@ export const Arrow = styled.div`
     right: ${props => props.direction === "right" && "10px"};
     bottom: 0;
     margin: auto;
-    // opacity: 0.5;
     z-index: 3;
 `;
 
 
 export const Wrapper = styled.div`
     height: 100%;
-    // max-width: 100%;
     display: flex;
     transform: translateX(${({slideIndex}) => slideIndex * -100}vw);
     transition: all 1.5s ease-in-out;
@@ -49,7 +43,6 @@ export const Slide = styled.div`
     height: 100vh;
     display: flex;
     align-items: center;
-    // justify-content: flex-end;
     justify-content: center;
     top: 0;
     bottom: 0; 
@@ -60,8 +53,6 @@ export const ImgContainer = styled.div`
     display: flex;
     height: 100%;
     width: 100%;
-    // max-width: 100%;
-    // flex: 1
 
 `;
 
@@ -69,8 +60,6 @@ export const ImgContainer = styled.div`
 export const Image = styled.img`
     display: flex;
     width: 100%;
-    // height: 85%;
-    // height: (100% - 180px);
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
@@ -87,7 +76,6 @@ export const InfoContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // margin-top: -200px;
     top:0;
     bottom: 0;
     color: ${({white}) => (white ? '#fff' : '#000')};
@@ -136,7 +124,6 @@ export const Button = styled.button`
     cursor: pointer;
     background-color: gold;
     outline: none;
-    // cursor: pointer;
     border: none;
 `; 
 
